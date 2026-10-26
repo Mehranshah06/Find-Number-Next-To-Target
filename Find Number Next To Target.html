@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Next To Number</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, button { padding: 8px; margin: 5px; }
+    #result { margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h3>Find Number Next To Target</h3>
+  
+  <input type="text" id="arrayInput" placeholder="e.g. 10,20,30,20,40" value="10,20,30,20,40,50">
+  <input type="number" id="targetInput" placeholder="Target" value="20">
+  <button onclick="findNumbers()">Find</button>
+
+  <div id="result"></div>
+
+<script>
+function findNumbers() {
+  const arr = document.getElementById('arrayInput').value.split(',').map(Number);
+  const target = Number(document.getElementById('targetInput').value);
+
+  let neighbors = [];
+  let nextAfter = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      if (i > 0) neighbors.push(arr[i - 1]);
+      if (i < arr.length - 1) neighbors.push(arr[i + 1]);
+      
+      
+      if (i < arr.length - 1) nextAfter.push(arr[i + 1]);
+    }
+  }
+
+  document.getElementById('result').innerHTML =
+   `Array: [${arr}] <br>
+    Target: ${target} <br><br>
+    Scenario 1 (Left & Right Neighbors): [${neighbors}] <br>
+    Scenario 2 (Only Next After Target): [${nextAfter}]`;
+}
+</script>
+
+</body>
+</html>
